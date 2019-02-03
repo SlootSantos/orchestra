@@ -2,19 +2,29 @@ const { writeToDb } = require('./write');
 const { readFromDb } = require('./read');
 const { exec } = require('child_process');
 
-jest.setTimeout(10000);
+jest.setTimeout(30000);
 
 // create infrastructure we need for the application
 beforeAll(() => {
   return new Promise(resolve => {
-    exec('terraform apply --auto-approve', () => resolve());
+    exec('terraform apply --auto-approve', () => {
+      console.log('ERROR: ', error);
+      console.log('STDOUT: ', stdout);
+      console.log('STDERR: ', stderr);
+      resolve();
+    });
   });
 });
 
 // clean up and destroy the infrastructure
 afterAll(() => {
   return new Promise(resolve => {
-    exec('terraform destroy --force', () => resolve());
+    exec('terraform destroy --force', (error, stdout, stderr) => {
+      console.log('ERROR: ', error);
+      console.log('STDOUT: ', stdout);
+      console.log('STDERR: ', stderr);
+      resolve();
+    });
   });
 });
 
