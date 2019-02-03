@@ -2,12 +2,14 @@ const { writeToDb } = require('./write');
 const { readFromDb } = require('./read');
 const { exec } = require('child_process');
 
+const tfExec = process.env.TF_EXEC || 'terraform';
+
 jest.setTimeout(30000);
 
 // create infrastructure we need for the application
 beforeAll(() => {
   return new Promise(resolve => {
-    exec('terraform apply --auto-approve', (error, stdout, stderr) => {
+    exec(`${tfExec} apply --auto-approve`, (error, stdout, stderr) => {
       console.log('ERROR: ', error);
       console.log('STDOUT: ', stdout);
       console.log('STDERR: ', stderr);
@@ -19,7 +21,7 @@ beforeAll(() => {
 // clean up and destroy the infrastructure
 afterAll(() => {
   return new Promise(resolve => {
-    exec('terraform destroy --force', (error, stdout, stderr) => {
+    exec(`${tfExec} destroy --force`, (error, stdout, stderr) => {
       console.log('ERROR: ', error);
       console.log('STDOUT: ', stdout);
       console.log('STDERR: ', stderr);
