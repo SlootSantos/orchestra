@@ -7,7 +7,7 @@ jest.setTimeout(30000);
 // create infrastructure we need for the application
 beforeAll(() => {
   return new Promise(resolve => {
-    exec('terraform apply --auto-approve', () => {
+    exec('terraform apply --auto-approve', (error, stdout, stderr) => {
       console.log('ERROR: ', error);
       console.log('STDOUT: ', stdout);
       console.log('STDERR: ', stderr);
