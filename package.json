@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/SlootSantos/orchestra/issues"
   },
-  "homepage": "https://github.com/SlootSantos/orchestra#readme"
+  "homepage": "https://github.com/SlootSantos/orchestra#readme",
+  "dependencies": {
+    "aws-sdk": "^2.395.0",
+    "jest": "^24.0.0"
+  }
 }
