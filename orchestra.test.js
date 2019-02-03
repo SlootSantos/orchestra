@@ -2,6 +2,7 @@ const { writeToDb } = require('./write');
 const { readFromDb } = require('./read');
 const { exec } = require('child_process');
 
+// you may want to set the terraform executable by hand
 const tfExec = process.env.TF_EXEC || 'terraform';
 
 jest.setTimeout(30000);
